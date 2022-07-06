@@ -19,9 +19,7 @@ public class Controller {
 
     @Autowired
     private RestTemplate restTemplate;
-    private static final String internalServerUrl = "http://internal-service/";
-
-
+    private static final String internalServerUrl = "http://gateway-service/in/";
 
     @PostMapping("create")
     public ResponseEntity<Model> create(@RequestBody Model model) {
