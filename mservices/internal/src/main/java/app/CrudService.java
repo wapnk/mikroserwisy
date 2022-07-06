@@ -13,6 +13,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,10 +34,16 @@ public class CrudService {
     }
 
     public ResponseEntity<Model> create(Model model) {
+        if (model.getDataDodania() == null) {
+            model.setDataDodania(LocalDateTime.now().toString());
+        }
         return ResponseEntity.of(Optional.of(modelRepository.save(model)));
     }
 
     public ResponseEntity<Model> update(Model model) {
+        if (model.getDataAktualizacji() == null) {
+            model.setDataAktualizacji(LocalDateTime.now().toString());
+        }
         return ResponseEntity.of(Optional.of(modelRepository.save(model)));
     }
 
